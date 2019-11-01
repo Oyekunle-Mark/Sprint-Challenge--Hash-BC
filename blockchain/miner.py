@@ -25,8 +25,8 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
 
-    # use a random number for the proof
-    proof = random.randint(1000000, 5000000)
+    # create a random offset
+    proof = random.randint(100000, 1000000)
 
     # find the hash of the last proof
     last_hash = hashlib.sha256(f"{last_proof}".encode()).hexdigest()
