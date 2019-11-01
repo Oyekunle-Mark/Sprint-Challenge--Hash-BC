@@ -24,12 +24,13 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
+    # begin with an offset
     proof = 0
 
     # find the hash of the last proof
-    last_hash = hashlib.sha256(f"last_proof".encode()).hexdigest()
-    # add the hash of the last proof to the proof
-    new_proof = f"{last_hash}{proof}".encode()
+    last_hash = hashlib.sha256(f"{last_proof}".encode()).hexdigest()
+    # add last_hash to the proof to get new proof
+    new_proof = f"{last_proof}{proof}".encode()
 
     while valid_proof(last_hash, new_proof) is False:
         proof += 1
