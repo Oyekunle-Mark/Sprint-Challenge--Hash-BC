@@ -9,24 +9,22 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 
-    # create list to hold the index of weights
-    index = []
-
     # loop through the weights
     for i, item in enumerate(weights):
         # check if limit - item is in ht
         if hash_table_retrieve(ht, (limit - item)) is not None:
-            # if it is add its position to the list
-            index.append(i)
-            # add the index of limit - item to the list as well
-            index.append(hash_table_retrieve(ht, (limit - item)))
+            # get the index of limit - item
+            other_index = hash_table_retrieve(ht, (limit - item))
+
+            # since the order matters, check the size of the index
+            # of the weights and return in the correct ordr
+            if i > other_index:
+                return [i, other_index]
+            else:
+                return [other_index, i]
         # otherwise, add item and index to the tuple as key/value pair
         else:
             hash_table_insert(ht, item, i)
-
-    # return the sorted tuple
-    if len(index):
-        return sorted(index, reverse=True)
 
     return None
 
