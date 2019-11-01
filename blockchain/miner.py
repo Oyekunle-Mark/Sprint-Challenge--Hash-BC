@@ -29,8 +29,12 @@ def proof_of_work(last_proof):
 
     # find the hash of the last proof
     last_hash = hashlib.sha256(f"{last_proof}".encode()).hexdigest()
+
+    # ! Note:  We are adding the hash of the last proof to a number/nonce for the new proof
     # add last_hash to the proof to get new proof
-    new_proof = f"{last_proof}{proof}".encode()
+    # new_proof = f"{last_hash}{proof}".encode()
+
+    new_proof = f"{proof}".encode()
 
     while valid_proof(last_hash, new_proof) is False:
         proof += 1
