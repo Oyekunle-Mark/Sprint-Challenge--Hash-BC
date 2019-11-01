@@ -9,9 +9,14 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 
-    """
-    YOUR CODE HERE
-    """
+    # create list to hold the index of weights
+
+    # loop through the weights
+        # check if weight - item is in ht
+            # if it is add its position and the position of weight - item to the tuple
+            # otherwise, add item and index to the tuple as key/value pair
+
+    # return the sorted tuple
 
     return None
 
